@@ -1,0 +1,148 @@
+= Checking Error Logs on FedEx Application Servers
+Nana Adu-Abankro
+:revdate: 2025-05-15
+:icons: font
+:toc:
+
+== Purpose
+
+This document explains how to check key error logs on FedEx application servers for incident triage, service verification, and application diagnostics using SuperPuTTY or terminal-based SSH access.
+
+== Audience
+
+FedEx L2 Support Engineers, Application Support Analysts
+
+== Prerequisites
+
+* SSH access to application hosts via SuperPuTTY or command line
+* Hostname or IP of the affected system
+* Sudo privileges (for protected logs)
+* Incident or Change Request number (optional)
+
+== Logs to Check
+
+. `syslog` or `messages` (System errors and kernel events)
+. `journalctl` (Persistent systemd-managed services)
+. Application-specific logs (`/var/log/appname/*.log`)
+
+== Step-by-Step: Checking System Logs
+
+=== Step 1: Connect to Host
+
+. Use SuperPuTTY to open a session or:
++
+[source, bash]
+----
+ssh fedexadmin@app-prod01
+----
+
+=== Step 2: Review `/var/log/messages` or `/var/log/syslog`
+
+. These logs contain general system warnings and hardware/kernel messages.
++
+[source, bash]
+----
+sudo tail -n 100 /var/log/messages
+sudo grep -i "error" /var/log/messages
+----
+
+=== Step 3: Use `journalctl` for Systemd Services
+
+. View the most recent log entries for a specific service:
++
+[source, bash]
+----
+sudo journalctl -u nginx.service --since "30 min ago"
+----
+
+. To look at boot-level issues:
++
+[source, bash]
+----
+sudo journalctl -b -1 -p err
+----
+
+=== Step 4: Application-Specific Logs
+
+. Navigate to the application’s log directory:
++
+[source, bash]
+----
+cd /opt/app/logs/
+ls -lh
+tail -f error.log
+----
+
+. Use `grep` to isolate exceptions:
++
+[source, bash]
+----
+grep -i "exception" error.log | tail -n 20
+----
+
+== Interpreting Errors
+
+|===
+| Error Message | Likely Cause | Suggested Action
+
+| `connection refused` | Service not running | Restart service and verify port
+| `permission denied` | Access issue | Check file/folder permissions
+| `null pointer exception` | Code bug | Escalate to dev team with stack trace
+| `segfault` | System/kernel issue | Open ticket for OS investigation
+|===
+
+== Escalation
+
+If logs show repeatable application crashes or configuration issues:
+
+. Capture the log snippet:
++
+[source, bash]
+----
+tail -n 50 error.log > /tmp/fedex-app-error.txt
+----
+
+. Attach the file to your ServiceNow incident or email escalation.
+
+== Related Commands
+
+[source, bash]
+----
+journalctl -xe               # Live error trace
+sudo less /var/log/secure    # Check authentication issues
+df -h                        # Check if logs failed due to disk usage
+----
+
+== Best Practices
+
+* Always check logs **before restarting** a service
+* Archive old logs weekly via logrotate or `mv`
+* For time-based search, use:
++
+[source, bash]
+----
+sudo journalctl --since "2025-05-14 20:00" --until "2025-05-14 21:00"
+----
+
+== References
+
+* link:./service-restart-guide.adoc[Service Restart Procedures]
+* link:./incident-template.adoc[Incident Response Template]
+/var/log/secure
+Purpose: Tracks authentication attempts, sudo usage, SSH logins.
+Use:
+
+bash
+Copy
+Edit
+sudo tail -n 100 /var/log/secure
+sudo grep "Failed password" /var/log/secure
+/var/log/cron
+Purpose: Monitors scheduled jobs, cron script executions.
+Use:
+
+bash
+Copy
+Edit
+sudo less /var/log/cron
+grep -i "error" /var/log/cron
