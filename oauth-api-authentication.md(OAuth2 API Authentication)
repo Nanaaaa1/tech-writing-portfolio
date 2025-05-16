@@ -1,0 +1,52 @@
+# API Authentication Guide - OAuth2 (PingAccess)
+
+## Overview
+This guide explains how to authenticate against a protected API using PingAccess and OAuth2. We'll use the Authorization Code Flow.
+
+## Prerequisites
+- Registered app in PingOne
+- Client ID and Secret
+- Redirect URI
+- Token endpoint and auth endpoint from your PingAccess tenant
+
+## Step-by-Step
+
+### 1. Authorize User
+
+GET https://auth.pingidentity.com/as/authorize?
+client_id=abc123
+&response_type=code
+&redirect_uri=https://yourapp.com/callback
+&scope=openid profile email
+
+pgsql
+Copy
+Edit
+
+User logs in and is redirected to your app with a `?code=xyz`.
+
+### 2. Exchange Code for Access Token
+
+POST /token
+Host: auth.pingidentity.com
+Authorization: Basic <base64(client_id:secret)>
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code
+&code=xyz
+&redirect_uri=https://yourapp.com/callback
+
+yaml
+Copy
+Edit
+
+### 3. Call Protected API
+
+Include `Authorization: Bearer <token>` in headers.
+
+---
+
+## Troubleshooting
+
+- **Invalid Client Error** → Double-check client ID/secret.
+- **Token Expired** → Use refresh token if available.
