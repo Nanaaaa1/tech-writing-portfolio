@@ -1,0 +1,35 @@
+= Application Code Checkout via Jenkins Pipeline
+Nana Adu-Abankro
+:revdate: 2025-05-15
+:icons: font
+:toc:
+
+== Overview
+
+This guide details the process of checking out application code from Git via a Jenkins pipeline, commonly used by FedEx teams for build/deploy automation.
+
+== Tools Used
+
+* Jenkins (Web UI)
+* GitHub Enterprise or Bitbucket
+* ServiceNow (for Change Request tracking)
+* SuperPuTTY (for validation)
+
+== Prerequisites
+
+* Valid Jenkins credentials
+* Permissions to trigger the relevant pipeline job
+* Branch or tag name for the checkout
+* Change Request number (if applicable)
+
+== Step-by-Step Instructions
+
+=== Step 1: Access Jenkins
+
+. Navigate to: https://jenkins.fedex.com/
+. Log in with your FedEx SSO account.
+
+=== Step 2: Locate Pipeline
+
+. Search for the pipeline by name:
++
