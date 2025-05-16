@@ -33,3 +33,59 @@ This guide details the process of checking out application code from Git via a J
 
 . Search for the pipeline by name:
 +
+. Select the job.
+
+=== Step 3: Review Job Parameters
+
+. Click **Build with Parameters**
+. Fill out required fields:
++
+|===
+| Parameter | Example
+
+| `GIT_BRANCH` | `release/2025-Q2`
+| `ENV`        | `prod`
+| `CRQ`        | `CHG0056789`
+|===
+
+=== Step 4: Trigger Build
+
+. Click **Build** to start the checkout process.
+. Monitor the console output:
++
+[source, shell]
+----
+> git clone ssh://git@github.fedex.com/apps/app-repo.git
+> git checkout release/2025-Q2
+----
+
+=== Step 5: Validate
+
+. Once successful, SSH into the app host:
++
+[source, bash]
+----
+ssh fedexadmin@app-prod01
+cd /opt/app-release
+ls -l
+----
+
+. Confirm files were pulled correctly.
+
+=== Step 6: Update CRQ
+
+. Go to ServiceNow → Your Change
+. Update the task with:
++
+
+== Troubleshooting
+
+* **"Permission denied (publickey)"**: Check Git credentials
+* **"Branch not found"**: Validate branch/tag spelling
+* **Build failed**: Review Jenkins log for build agent errors
+
+== Related
+
+* link:./jenkins-deploy-reference.adoc[Jenkins Deployment Reference]
+* link:./git-troubleshooting-guide.adoc[Git Troubleshooting Guide]
+
