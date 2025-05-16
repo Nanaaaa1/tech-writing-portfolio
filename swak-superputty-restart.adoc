@@ -1,0 +1,157 @@
+= Shutting Down and Restarting SWAK Applications via SuperPuTTY
+FedEx Internal Guide v1.0
+:author: Nana Adu-Abankro
+:revdate: 2025-05-15
+:toc:
+:toclevels: 3
+:icons: font
+:sectnums:
+:sectlinks:
+
+== Purpose
+
+This document outlines the procedures to shut down and restart SWAK applications in FedEx environments using SuperPuTTY. It is intended for L2 support teams and DevOps engineers responsible for ensuring application uptime and recovery.
+
+== Prerequisites
+
+* SuperPuTTY installed with saved sessions for the relevant environments (e.g., `FedEx-SWAK-PROD-01`)
+* SSH credentials with sudo or necessary app permissions
+* Familiarity with:
+** `systemctl`
+** `ps`, `kill`, `grep`
+** Linux logs and tailing
+** SWAK application structure
+
+== Step 1: Launch SuperPuTTY and Connect
+
+. Open SuperPuTTY on your local system.
+. Navigate to `Session Manager`.
+. Select the target session (e.g., `FedEx-SWAK-PROD-01`).
+. Double-click to launch the SSH terminal.
+
+== Step 2: Check Current SWAK Status
+
+[source,shell]
+----
+ps -ef | grep swak
+----
+
+[source,shell]
+----
+sudo systemctl status swak-api
+sudo systemctl status swak-scheduler
+sudo systemctl status swak-web
+----
+
+Confirm the processes are active or inactive as expected.
+
+== Step 3: Shut Down SWAK Application
+
+[source,shell]
+----
+sudo systemctl stop swak-api
+sudo systemctl stop swak-scheduler
+sudo systemctl stop swak-web
+----
+
+If the services aren't managed by `systemctl`, kill the processes manually:
+
+[source,shell]
+----
+ps -ef | grep swak
+kill -9 <PID>
+----
+
+== Step 4: Restart SWAK Application
+
+[source,shell]
+----
+sudo systemctl start swak-api
+sudo systemctl start swak-scheduler
+sudo systemctl start swak-web
+----
+
+== Step 5: Validate Restart
+
+Check service status:
+
+[source,shell]
+----
+sudo systemctl status swak-api
+----
+
+Tail the log file:
+
+[source,shell]
+----
+tail -f /opt/fedex/swak-api/logs/app.log
+----
+
+Run a health check:
+
+[source,shell]
+----
+curl https://swak-fedex-stage01.internal.fedex.com/api/health
+----
+
+Expected output:
+
+[source,json]
+----
+{
+  "status": "UP",
+  "version": "3.1.4"
+}
+----
+
+== Optional: Clear Temp/Cache (If Issues Persist)
+
+[source,shell]
+----
+rm -rf /opt/fedex/swak-api/temp/*
+rm -rf /opt/fedex/swak-api/cache/*
+sudo systemctl restart swak-api
+----
+
+== Troubleshooting
+
+|===
+| Symptom | Suggested Action
+
+| `Failed to start` errors
+| Check logs using `journalctl -xe`
+
+| Port already in use
+| Identify and kill the conflicting process using `netstat -tulnp | grep 8080`
+
+| No logs are generated
+| Check folder permissions and logging config
+
+| App crash loop
+| Run in debug mode or escalate to development
+|===
+
+== Compliance and Logging
+
+[NOTE]
+====
+All actions must follow change control processes.
+Notify stakeholders before restarting production systems.
+====
+
+.Example Metadata
+----
+Ticket ID: INC-2025-14322
+Change Window: 2025-05-17 02:00 – 02:30 CST
+Performed by: Nana Adu-Abankro
+Environment: FedEx-PROD-SWAK01
+----
+
+== Revision History
+
+|===
+| Version | Date | Author | Description
+
+| 1.0 | 2025-05-15 | Nana Adu-Abankro | Initial draft
+|===
+
