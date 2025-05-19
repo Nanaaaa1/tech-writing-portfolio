@@ -1,0 +1,36 @@
+= Using AI to Prioritize Security Incidents in ServiceNow
+:author: Nana Adu-Abankro
+:revdate: 2025-05-19
+
+== Overview
+
+This article explains how to configure AI-based prioritization for Security Incident Response (SIR) in ServiceNow. By enabling predictive models, security teams can triage incidents faster and more accurately.
+
+== Prerequisites
+
+- ServiceNow SecOps plugin
+- Access to Predictive Intelligence module
+- Admin or SecOps Admin role
+
+== Steps to Enable AI Prioritization
+
+. Navigate to *Predictive Intelligence > Models*.
+. Select **Incident Priority Prediction** model.
+. Configure training data set from past incidents.
+. Activate the model and validate accuracy (recommended: 80%+).
+. Map model outputs to incident priority scale (1–5).
+. Deploy changes and test in a sandbox environment.
+
+== Example Use Case
+
+An incident with similar characteristics to past 'Critical' events will automatically be assigned a Priority 1 and escalated to Tier 2 support with no manual intervention.
+
+== Troubleshooting
+
+- If accuracy is low, retrain the model with a larger dataset.
+- Check if field mappings are correct in the Incident table.
+
+== See Also
+
+- link:/kb/model-training-best-practices[Model Training Best Practices]
+- link:/kb/securing-servicenow-ai-data[Securing AI Data in ServiceNow]
