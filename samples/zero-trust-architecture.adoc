@@ -1,0 +1,42 @@
+= Zero Trust Architecture: A Practical Overview
+Author: Nana Adu-Abankro
+Version: 1.0
+Date: 2025-06-11
+
+== Introduction
+
+Zero Trust Architecture (ZTA) is a modern security framework based on the principle of "never trust, always verify." It redefines the concept of network perimeter and assumes that threats exist both inside and outside the traditional boundaries.
+
+== Core Tenets
+
+. Continuous authentication and authorization
+. Least-privilege access
+. Microsegmentation
+. Strong identity verification
+. Policy-based access control
+
+== Architectural Components
+
+[cols="1,2",options="header"]
+|===
+|Component | Description
+
+|Identity Provider | Authenticates users and systems based on policies
+|Policy Engine | Evaluates access requests based on context and risk signals
+|Resource Gateway | Controls access to applications or services
+|Security Telemetry | Provides real-time insights for enforcement and logging
+|Device Posture | Assesses trustworthiness of the endpoint
+|===
+
+== Sample Workflow
+
+. A user attempts to access a secure internal app.
+. Authentication request is made and device compliance is verified.
+. Contextual policies (e.g., geolocation, behavior, time of day) are evaluated.
+. Access is either granted, denied, or escalated for further verification.
+
+== Implementation Considerations
+
+* Use federated identity and MFA
+* Implement network segmentation and dynamic policy enforcement
+* Integrate endpoint detection and response (EDR) data
