@@ -1,4 +1,4 @@
-# tech-writing-portfolio
+# Cyber Security Technical-writing-portfolio
 Samples of technical documentation by Nana Adu-Abankro
 = Technical Writing Portfolio: Infrastructure & Support Docs
 Nana Adu-Abankro
@@ -8,7 +8,7 @@ Nana Adu-Abankro
 
 == Overview
 
-This repository contains real-world technical documentation examples modeled after tasks performed in a production support environment. All examples are written in AsciiDoc format using a Docs-as-Code workflow to reflect industry-standard authoring.
+This repository contains real-world technical documentation examples modeled after tasks performed in a cyber security and production support environment. All examples are written in AsciiDoc format using a Docs-as-Code workflow to reflect industry-standard authoring.
 
 == Key Use Cases
 
