@@ -1,0 +1,53 @@
+= Incident Response Playbook: Ransomware Attack
+Author: Nana Adu-Abankro
+Version: 1.3
+Last Reviewed: 2025-06-11
+
+== Purpose
+
+This document defines the incident response steps in the event of a ransomware attack. It is designed to align with NIST SP 800-61r2 and supports both technical teams and incident coordinators.
+
+== Scope
+
+Applies to all enterprise systems—on-premises and cloud-hosted—across all business units.
+
+== Response Phases
+
+[cols="1,2",options="header"]
+|===
+|Phase |Description
+
+|1. Preparation | Verify backups, implement email filtering, conduct phishing simulations.
+|2. Detection | Identify anomalies using EDR/XDR, SIEM alerts, and user reports.
+|3. Containment | Isolate affected endpoints, disable network access, lock compromised credentials.
+|4. Eradication | Remove malware, re-image systems, update AV definitions.
+|5. Recovery | Restore systems from verified backups, perform security validation checks.
+|6. Lessons Learned | Conduct post-incident review within 10 business days.
+|===
+
+== Communication Workflow
+
+[plantuml]
+----
+@startuml
+actor Analyst
+actor IT Support
+actor CISO
+
+Analyst -> "SIEM Tool" : Detect Alert
+Analyst --> IT Support : Notify + Isolate Host
+Analyst --> CISO : Escalation if Critical
+CISO --> "Comms Team" : Public Disclosure
+@enduml
+----
+
+== Roles & Responsibilities
+
+* **Incident Response Lead:** Coordinates efforts and owns communication plan.
+* **IT Ops:** Executes isolation and recovery.
+* **Security Engineer:** Performs forensics and malware analysis.
+
+== Reference Standards
+
+- NIST SP 800-61r2
+- ISO/IEC 27035
