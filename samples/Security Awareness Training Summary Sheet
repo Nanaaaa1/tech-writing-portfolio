@@ -1,0 +1,36 @@
+= Quarterly Cybersecurity Awareness Guide
+Audience: All Employees
+Version: Q2 2025
+
+== Module Topics
+
+. Phishing and Email Safety
+. Multi-Factor Authentication (MFA)
+. Password Best Practices
+. Remote Work Device Security
+. Social Engineering Awareness
+
+== Key Reminders
+
+* **Never click unknown links or open attachments** from unknown sources
+* **Verify MFA requests** — if you didn’t initiate it, report it immediately
+* **Use a password manager** instead of reusing passwords
+
+== Reporting Suspicious Activity
+
+[cols="1,2",options="header"]
+|===
+|Platform | How to Report
+
+|Email | Forward to `phishing@yourcompany.com`
+|ServiceNow | Submit “Report Phishing” request form
+|Phone | Call internal hotline at 1-800-SEC-ALRT
+|===
+
+== Feedback
+
+We continuously improve training materials. To share suggestions, use the Miro board linked on the Intranet, or comment directly in Confluence.
+
+== Next Training Deadline
+
+All employees must complete the Q2 module in the LMS by: **July 31, 2025**.
