@@ -1,0 +1,33 @@
+= Security Control Framework Alignment Matrix
+Version: 1.0
+Maintained by: GRC Team
+Last Updated: 2025-04-29
+
+== Objective
+
+To map organizational security controls to major cybersecurity frameworks for audit readiness, compliance tracking, and policy harmonization.
+
+== Frameworks Covered
+
+- NIST SP 800-53 Rev. 5
+- ISO/IEC 27001:2022 Annex A
+- HIPAA Security Rule
+
+== Example Mapping Table
+
+[cols="1,1,1,1",options="header"]
+|===
+|Control Domain |NIST 800-53 |ISO 27001 |HIPAA
+
+|Access Control |AC-2 (Account Mgmt) |A.9.2.1 (User Reg) |§164.308(a)(4)
+|Audit Logging |AU-2, AU-6 |A.12.4.1 |§164.312(b)
+|Incident Response |IR-4, IR-5 |A.16.1.5 |§164.308(a)(6)
+|Encryption |SC-12 to SC-13 |A.10.1.1 |§164.312(a)(2)(iv)
+|===
+
+== Notes
+
+* All controls must have associated procedures or SOPs in Confluence
+* Policy references should be maintained in the ServiceNow CMDB
+* Use this matrix to prepare for audits and respond to regulatory inquiries
+
