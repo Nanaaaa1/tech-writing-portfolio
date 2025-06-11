@@ -1,0 +1,45 @@
+= Cybersecurity Risk Assessment Template
+Version: 3.2
+Last Updated: 2025-06-01
+Owner: Enterprise Risk Office
+
+== Purpose
+
+To provide a structured methodology for identifying, analyzing, and mitigating cybersecurity risks in accordance with NIST SP 800-30, ISO/IEC 27005, and HIPAA Security Rule.
+
+== Assessment Phases
+
+. Define system boundaries and data flows
+. Identify threats and vulnerabilities
+. Evaluate likelihood and impact
+. Determine risk level and assign controls
+. Document mitigation actions
+
+== Risk Scoring Matrix
+
+[cols="1,1,1,1",options="header"]
+|===
+|Risk Level |Likelihood |Impact |Action
+
+|High |Likely |Severe |Mitigate immediately
+|Medium |Possible |Moderate |Track and reduce
+|Low |Unlikely |Minor |Accept or monitor
+|===
+
+== Risk Register Example
+
+[cols="1,1,1,1,1",options="header"]
+|===
+|Asset |Threat |Vuln |Risk Rating |Control
+
+|File Server |Ransomware |Unpatched SMB |High |EPP, patching
+|Email Gateway |Phishing |Lack of DMARC |Medium |Enable SPF, DKIM
+|HR Database |Insider threat |Excessive access |High |RBAC, DLP
+|===
+
+== Review Process
+
+* Reviews are conducted semi-annually or after a major incident
+* Risk decisions must be documented and approved by the CISO
+* Risk exceptions require sign-off and mitigation timeline
+
