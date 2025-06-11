@@ -1,0 +1,34 @@
+= Access Control Policy Overview
+Version: 2.1
+Owner: Cybersecurity Governance Team
+Last Reviewed: 2025-06-01
+
+== Objective
+
+To define access control principles for user, system, and service accounts across cloud and on-premises systems, aligned with NIST SP 800-53 (AC family) and ISO 27001:2013 (A.9).
+
+== Policy Statements
+
+* All access must be **role-based (RBAC)** and **least-privilege**.
+* Admin rights must be **approved and logged in ServiceNow**.
+* Accounts must be reviewed **quarterly via access certification campaigns**.
+
+== Procedure Highlights
+
+. HR creates initial identity in Workday
+. IAM tool (e.g., SailPoint) triggers account provisioning in Active Directory & Azure AD
+. System owners validate entitlements via Jira or ServiceNow request workflow
+. De-provisioning occurs within 24 hours of termination event
+
+== Exceptions
+
+Exception requests must be approved by both:
+- Data Owner
+- CISO or delegate
+
+== Review Cycle
+
+Documentation will be reviewed every 12 months or following:
+- A critical access-related incident
+- New tool integration
+- Regulatory compliance changes
