@@ -1,4 +1,4 @@
-# Cyber Security Technical-writing-portfolio
+#  Technical-writing Documentation-Portfolio
 Samples of technical documentation by Nana Adu-Abankro
 = Technical Writing Portfolio: Infrastructure & Support Docs
 Nana Adu-Abankro
